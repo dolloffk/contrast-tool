@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Color Contrast Adjuster</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+<div id="container">
+<header><h1>Color Contrast Tool</h1></header>
+<main>
+<p>This tool calculates the contrast ratio of a text and background color combination, then determines whether it satisfies the <a href="https://www.w3.org/TR/WCAG21/#contrast-minimum" target="_blank">Web Content Accessibility Guidelines (WCAG)</a> at the AA and AAA levels. If not, it'll give you the closest WCAG-compliant text color.</p>
+
+<p>Colors can be entered in hex, RGB, or HSL format.</p>
+
+<details>
+<summary>Accepted inputs</summary>
+<ul>
+    <li><strong>Hex</strong>: Inputs are case-insensitive and can include or omit the pound sign. 3-digit hex codes can also be used. #FFFFFF, ffffff, and fff are inputs that will work.</li>
+    <li><strong>RGB</strong>: Input must follow the format "rgb(r,g,b)", case-insensitive. Semicolons can be used instead of commas, and whitespace will be ignored. Values should be between 0 and 255. rgb(255,255,255), rgb(255; 255; 255), and RGB(255,255,255) are inputs that will work.</li>
+    <li><strong>HSL</strong>: Input must follow the format "hsl(h,s,l)", case-insensitive. Semicolons can be used instead of commas, and whitespace will be ignored. Values for hue must be between 0 and 360. Values for saturation and luminosity must be between 0 and 100. Percentages are also accepted. hsl(0,100,100), HSL(0;100;100), and HSL(0, 100%, 100%) are inputs that will work.</li>
+</ul>
+</details>
+
+<div class="columns">
+<section>
+<h1 id="textlabel">Enter text color:</h1>
+
+<input type="text" id="color" oninput="mainFunction()" value="#ffffff" size="15" aria-labelledby="textlabel">
+<div class="box" id="swatch-color"></div>
+<div id="color-results" class="results"></div>
+</section>
+
+<section>
+<h1 id="bglabel">Enter background color:</h1>
+<input type="text" id="background" oninput="mainFunction()" value="#000000" size="15" aria-labelledby="bglabel"> 
+<div class="box" id="swatch-bg"></div>
+<div id="bg-results" class="results"></div>
+</section>
+</div>
+
+<div id="preview" class="preview">
+<p><span class="largetext">This is what your chosen text and background colors look like</span></p>
+<p>This is what your chosen text and background colors look like</p></div>
+
+<section>
+<h1>Contrast results</h1>
+<div id="contrast"></div>
+
+<div id="aa" class="fixed">
+<p>The closest color that would satisfy AA contrast requirements (4.5) is:</p>
+<div id="aacolor" class="results"></div>
+<div id="aapreview" class="preview">
+<p><span class="largetext">This is what the new text color looks like on your background</span></p>
+<p>This is what the new text color looks like on your background</p></div>
+</div>
+
+<div id="aaa" class="fixed">
+<p>The closest color that would satisfy AAA contrast requirements (7) is:</p>
+<div id="aaacolor" class="results"></div>
+<div id="aaapreview" class="preview">
+<p><span class="largetext">This is what the new text color looks like on your background</span></p>
+<p>This is what the new text color looks like on your background</p></div>
+</div>
+
+<div id="errorcontrast"></div>
+</section>
+</main>
+</div>
+
+<script src="contrast.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
